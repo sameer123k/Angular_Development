@@ -1,0 +1,36 @@
+<div class="outer">
+    <div class="main">
+        <form [formGroup]="loginForm" (submit)="login()">
+            <div class="container">
+                <div class="row">
+                    <div class="col pb-3 text-center">
+                        <h5 class="fw-bold">Login</h5>
+                    </div>
+                </div>
+                <div class="row">   
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" formControlName="email" class="form-control"  placeholder="Email">
+                          </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                     <label for="password" class="form-label">Password</label>
+                     <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+                   </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center pt-2">
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        <button type="submit" class="btn btn-secondary w-100" [disabled]="loginForm.invalid">Submit</button>
+                    </div>
+                </div>
+            </div>        
+          </form>
+    </div>
+    </div>

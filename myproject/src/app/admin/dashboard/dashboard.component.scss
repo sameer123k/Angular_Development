@@ -1,0 +1,25 @@
+.section-1{
+    display: flex;
+    justify-content: center;
+    
+   ul {
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+    cursor: pointer;
+    .active {
+        border-bottom: 2px solid yellow;
+      }
+      
+    li{
+    color: #fff;
+   }
+}
+
+
+    h2{
+        color: #fff;
+        text-align: center;
+        padding-top: 20px;
+    }
+}

@@ -1,0 +1,196 @@
+<div class="nav">
+  <div class="nav-inner">
+    <!-- Searchbar -->
+    <div>
+      <input class="form-control" type="text" placeholder="Search User" [(ngModel)]="searchText"
+        (keyup)="search($event)">
+    </div>
+    <!-- Name Filter -->
+    <div>
+      <mat-form-field>
+        <mat-label>Search Name</mat-label>
+        <mat-select (selectionChange)="namefilter($event.value)">
+          <mat-option *ngFor="let abc of nameData" [value]="abc">{{abc}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Email Filter -->
+    <div>
+      <mat-form-field>
+        <mat-label>Search Email</mat-label>
+        <mat-select (selectionChange)="emailfilter($event.value)">
+          <mat-option *ngFor="let data of emailData" [value]="data">{{data}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- search range date picker -->
+    <div>
+      <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date" [(ngModel)]="startDate">
+          <input matEndDate placeholder="End date" [(ngModel)]="endDate" (dateChange)="changeDate()">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+
+      <!-- <button mat-raised-button class="btn btn-danger ms-3 mb-2" (click)="applyFilter()">Apply Filter</button> -->
+
+    </div>
+
+    <!-- Add User Button -->
+    <div>
+      <nav class="navbar">
+        <button type="button" class="btn btn-warning" data-bs-target="#exampleModal" data-bs-toggle="modal">Add
+          User</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- modal start -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="outer">
+            <form [formGroup]="addUser" (submit)="submitData()">
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter Name">
+                    <small *ngIf="Name && Name.invalid && Name.touched">Name is Required *</small>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" formControlName="email" class="form-control"
+                      placeholder="Enter Email">
+                    <small *ngIf="email && email.invalid && email.touched">Enter a Valid Email*</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" formControlName="password" class="form-control"
+                      placeholder="Enter Password" maxlength="6">
+                    <small *ngIf="Password && Password.invalid && Password.touched">Enter a Valid Password*</small>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="age" class="form-label">DOB</label>
+                    <input type="date" id="age" formControlName="age" class="form-control" placeholder="Enter Age"
+                      max="2023-11-01">
+                    <small *ngIf="Age && Age.invalid && Age.touched">Enter Valid DOB*</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input type="tel" id="contact" formControlName="contact" class="form-control"
+                      placeholder="Enter Number" maxlength="10">
+                    <small *ngIf="Phone && Phone.invalid && Phone.touched">Enter Valid contact number*</small>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button type="submit" class="btn btn-warning w-100" [disabled]="addUser.invalid"
+                    data-bs-dismiss="modal" aria-label="Close">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- table start -->
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let datas of dataSet | search:searchText ">
+      <td>{{datas.name}}</td>
+      <td>{{datas.email}}</td>
+      <td>{{datas.password}}</td>
+      <td>{{datas.age | date:'dd-MM-YYYY'}}</td>
+      <td>{{datas.contact}}</td>
+      <td>
+        <button class="edit-btn" data-bs-target="#exampleModal" data-bs-toggle="modal"
+          (click)="editData(datas._id)">Edit</button>
+        <button class="delete-btn" (click)="deleteData(datas._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- Mat table start -->
+
+ <div class="table">
+    <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Password">
+      <th mat-header-cell *matHeaderCellDef> Password </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Age">
+      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+     <ng-container matColumnDef="Contact">
+      <th mat-header-cell *matHeaderCellDef> Contact </th>
+      <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="edit-btn" data-bs-target="#exampleModal" data-bs-toggle="modal" (click)="editData(element._id)">Edit</button>
+        <button class="delete-btn" (click)="deleteData(element._id)">Delete</button>
+         </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<mat-paginator [pageSizeOptions]="[6,10,2, 4, 25, 50]" class="pagination"></mat-paginator>

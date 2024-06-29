@@ -1,0 +1,71 @@
+<div class="nav">
+
+    <!-- Add User Button -->
+   <div class="nav-inner">
+
+    <!-- name search -->
+    <div>
+<mat-form-field>
+  <mat-label>Search Name</mat-label>
+  <mat-select (selectionChange)="nameFilter($event)">
+    <mat-option *ngFor="let data of nameData2" [value]="data">
+    {{data}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+
+    <!-- email search -->
+    <div>
+<mat-form-field>
+  <mat-label>Search Email</mat-label>
+  <mat-select (selectionChange)="emailDatafilter($event)">
+    <mat-option *ngFor="let data of emailData" [value]="data">
+    {{data}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+    </div>
+    <!-- date filter -->
+ <div>
+  <mat-form-field *ngIf="!show">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" [(ngModel)]="Startdate">
+      <input matEndDate placeholder="End date" [(ngModel)]="Enddate" (dateChange)="DateFilter(Startdate,Enddate)">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+ </div>
+
+
+   </div>
+  </div>
+
+<div class="main">
+    <div>
+        <p style="font-weight: 600;text-transform: capitalize;font-size: 20px; padding-left: 10px;">{{nameData}}</p>
+    </div>
+    <mat-tab-group [(selectedIndex)]="selectedIndex"(selectedTabChange)="onTabChanged($event)">
+
+        <mat-tab label="New User">
+       <app-new-userlist [callType]="nameFilters" [callType]="emailData2" [callType]="dateFilter" ></app-new-userlist>
+            <!-- <app-new-userlist (childEvent)="child($event)"></app-new-userlist> -->
+        </mat-tab>
+
+
+        <mat-tab label="New Client">
+              <!-- <app-new-clientlist [ClientData]="ClientlistData"></app-new-clientlist> -->
+                     <app-new-clientlist [callType]="emailData2"  [callType]="nameFilters"></app-new-clientlist>
+        </mat-tab>
+
+        <mat-tab label="New Permission">
+            <!-- <app-new-permission [PermissionDataList]="PermissionData"></app-new-permission> -->
+                        <app-new-permission></app-new-permission>
+             </mat-tab>
+    </mat-tab-group>
+
+</div>

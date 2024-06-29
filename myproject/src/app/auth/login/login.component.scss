@@ -1,0 +1,20 @@
+.outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    // background-color: #f0f0f0;
+    background: linear-gradient(#73afe1, #9860b9);
+    .main{
+        width: 30%;
+        height: auto;
+        // width: 400px;
+        padding: 0 0 20px 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px 3px #9f9f9f;
+        padding: 10px 23px 25px 23px;       
+       
+        }
+    
+}
+

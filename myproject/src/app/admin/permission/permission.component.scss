@@ -1,0 +1,43 @@
+.top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+     margin-top: 50px;
+     .userlist-div{
+        width: 230px;
+        // margin-left: 130px;
+        border: 1px solid rgb(174, 174, 174);
+        text-align: center;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+     }
+     .userlist-div2{
+        width: 230px;
+        border: 1px solid rgb(174, 174, 174);
+        text-align: center;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        margin-right: 160px;
+     }
+    p{
+        color: #fff;
+        margin: 10px 0;
+        font-weight: 600;
+    }
+}
+
+
+.main{
+    margin: auto;
+    width: 80%;
+    // margin-top: 50px;
+}
+.buttons-div{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    gap: 15px;
+}

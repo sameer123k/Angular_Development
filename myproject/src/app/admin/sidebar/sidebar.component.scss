@@ -1,0 +1,21 @@
+.outer{
+    width: 250px;
+    height: calc(100vh - 60px);
+    background-color: #484ca3;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+   
+    h4{
+        padding-left: 10px;
+    }
+    div{
+        cursor: pointer;
+        .p{
+        .active {
+            color: #ffee00 !important;
+            font-weight: 600;
+          }
+        }
+    }
+}
