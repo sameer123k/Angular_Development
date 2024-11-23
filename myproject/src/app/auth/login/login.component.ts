@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {  FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { first } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

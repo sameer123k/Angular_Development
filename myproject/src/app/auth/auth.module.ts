@@ -7,14 +7,12 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AbcComponent } from './practice/abc/abc.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
-    AbcComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
