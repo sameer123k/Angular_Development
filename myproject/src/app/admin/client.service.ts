@@ -10,6 +10,7 @@ export class ClientService {
 
 
   constructor(private http: HttpClient) { }
+  
   url1="http://localhost:7000/api/" 
 
   url3= 'http://localhost:7000/api/deleteClient/'
@@ -29,7 +30,7 @@ export class ClientService {
 
   addUser(data:any){
     return this.http.post(`${this.url1}addnewclient`,data)
-  }
+  } 
   getUser(){
     return this.http.get(`${this.url1}findallclients`)
   }

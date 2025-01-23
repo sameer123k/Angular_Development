@@ -1,17 +1,13 @@
 .main{
     display: flex;
+    height: calc( 100vh - 40px );
  .sidebar{
-        flex: 0 0 15%;
+        flex: 0 0 17%;
+        background-color: #323232;
     }
 .router-div{
-    height: calc(100vh - 60px);
-    //  overflow-y: scroll;
-      flex: 0 0 85%;
-    //   display: flex;
-      // justify-content: center;
-      // padding-top: 20px;
-      background-image: url(../../../assets/background.jpg);
-      background-size: cover;
-      overflow: scroll;
+      flex: 0 0 83%;
+      padding: 20px;
+      overflow-y: scroll;
 }
 }

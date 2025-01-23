@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../guard/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +8,18 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
-  Navtabs:any=''
-  //ng style
-  textColor = 'red';
+  constructor( private auth: AuthService){
 
-  onclick(value:any){
-    this.Navtabs=value
   }
+
+  logout(){
+    this.auth.islogout();
+  }
+
+storeValue:any = 'dashboard'
+
+navToggle(abc:any){
+  this.storeValue =abc
+}
+
 }

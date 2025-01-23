@@ -1,10 +1,9 @@
 .outer{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     height: 100vh;
-    // background-color: #f0f0f0;
-    background: linear-gradient(#73afe1, #9860b9);
+    background-image: url(../../../assets/bg.avif);
     .main{
         width: 40%;
         height: auto;

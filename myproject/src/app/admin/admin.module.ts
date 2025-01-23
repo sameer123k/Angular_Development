@@ -32,6 +32,10 @@ import { NewClientlistComponent } from './new-clientlist/new-clientlist.componen
 import { NewPermissionComponent } from './new-permission/new-permission.component';
 import { CombinedComponent } from './combined/combined.component';
 import { DemoComponent } from './demo/demo.component';
+import { AddEmployeeComponent } from './employee/add-employee/add-employee.component';
+import { AdminDetailsComponent } from './employee/admin-details/admin-details.component';
+import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+
 @NgModule({
   declarations: [  
     HeaderComponent,
@@ -49,6 +53,9 @@ import { DemoComponent } from './demo/demo.component';
     NewPermissionComponent,
     CombinedComponent,
     DemoComponent,
+    AddEmployeeComponent,
+    AdminDetailsComponent,
+    EmployeeListComponent,
   ],
   imports: [
     CommonModule,

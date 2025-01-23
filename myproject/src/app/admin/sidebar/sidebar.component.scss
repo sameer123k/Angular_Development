@@ -1,10 +1,4 @@
 .outer{
-    width: 250px;
-    height: calc(100vh - 60px);
-    background-color: #484ca3;
-    position: absolute;
-    left: 0;
-    z-index: 2;
    
     h4{
         padding-left: 10px;
@@ -17,5 +11,30 @@
             font-weight: 600;
           }
         }
+    }
+
+    .sidebar_menus ul{
+        list-style: none;
+        padding: 15px 0;
+
+        li{
+            color:#fff;
+            padding: 5px 15px;     
+            margin:2px 0;    
+
+            i{
+                padding-right: 5px;
+            }
+           
+        }
+
+           li:hover{
+                background-color: #5c60f5;
+            }
+
+             li.active{
+                background-color: #5c60f5;
+                color:#fff;
+            }
     }
 }

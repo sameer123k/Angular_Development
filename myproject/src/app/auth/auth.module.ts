@@ -7,14 +7,16 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AbcComponent } from './practice/abc/abc.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
-    AbcComponent,
+    NotFoundComponent,
+    UserDashboardComponent,
   ],
   imports: [
     CommonModule,

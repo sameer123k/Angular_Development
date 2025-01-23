@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClientService } from '../client.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserDataService } from '../user-data.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
@@ -10,91 +9,95 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class DemoComponent {
 
-   Userdata:any=[]
-   id:any
-   nameData:any = []
-   emailData:any = []
-  constructor(private service:UserDataService){
-    this.service.getUser().subscribe((abc:any)=>{
-      this.Userdata=abc
-      this.Userdata.map((helo:any)=>{
-        this.nameData.push(helo.name)
-        this.emailData.push(helo.email)
-        console.log(this.nameData);
+  displayedColumns: string[] = ['name', 'email', 'password', 'dob', 'contact', 'action'];
+  dataSource = new MatTableDataSource<[]>;
+
+  Data: any
+  nameData: any[] = []
+  emailData: any[] = []
+  getData: any
+  data: any
+  id: any
+  constructor(private _service: ClientService) {
+    this._service.getUser().subscribe((res: any) => {
+      this.getData = res;
+      this.data = res;
+      this.dataSource.data = this.getData;   // .data is very important for search filter 
+
+      this.getData.map((value: any) => {
+        this.nameData.push(value.name)
       })
-     this.dataSource.data=this.Userdata
+
+      this.getData.map((value: any) => {
+        this.emailData.push(value.email)
+      })
     })
   }
 
-  displayedColumns: string[] = [ 'name', 'email', 'password', 'age' , 'contact', 'action'];
-  dataSource = new MatTableDataSource<any>;
-
-  SignupForm =  new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    email:new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
-    age: new FormControl('',[Validators.required,Validators.minLength(2)]),
-    contact: new FormControl('',[Validators.required,Validators.minLength(10)]),
+  signUPData: any = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    age: new FormControl(' '),
+    contact: new FormControl(' '),
   })
 
-// getters for validations
 
-  get Name(){
-    return this.SignupForm.get('name')
+  namefilter(hello: any) {
+    this.dataSource.filter  = hello
   }
-  get Email(){
-    return this.SignupForm.get('email')
-  }
- get Password(){
-  return this.SignupForm.get('password')
- }
- get Age(){
-  return this.SignupForm.get('age')
- }
- get Contact(){
-  return this.SignupForm.get('contact')
- }
 
-  SaveData(){
-    if(this.id){
-     this.service.updateUser(this.id,this.SignupForm.value).subscribe((update:any)=>{
-      console.log('update data successully !');
-     })
+  emailFilter(aa:any){
+    this.dataSource.filter = aa
+  }
+
+  saveData() {
+
+    if (this.id) {
+      this._service.updateData(this.id, this.signUPData.value).subscribe((res: any) => {
+        console.log('data update');
+
+      })
     }
-    else{
-    this.service.saveUsers(this.SignupForm.value).subscribe((helo:any)=>{
-      console.log('post api sucessully !');
+    else {
+      this._service.addUser(this.signUPData.value).subscribe((res: any) => {
+        console.log('data add successfully', res);
+      });
+    }
+
+  }
+
+
+  deleteUser(abc: any) {
+    this._service.deleteClient(abc).subscribe((res: any) => {
+      this._service.getClients().subscribe((res: any) => {
+        this.getData = []
+        this.getData = res;
+      })
     })
   }
-  }
-  DeleteUser(abc:any){
-    this.service.deleteUser(abc).subscribe((aa:any)=>{
-     this.service.getUser().subscribe((data:any)=>{
-      this.Userdata=[]
-      this.Userdata=data
-     })
+
+  editData(hello: any) {
+    this._service.findData(hello).subscribe((res: any) => {
+      this.id = res._id
+      console.log('your Data', this.id);
+
+      this.signUPData = new FormGroup({
+        name: new FormControl(res.name),
+        email: new FormControl(res.email),
+        password: new FormControl(res.password),
+        age: new FormControl(res.age),
+        contact: new FormControl(res.contact),
+      })
     })
   }
-  EditUser(item:any){
-   this.service.editUser(item).subscribe((helo:any)=>{
-    this.id = helo._id
-    this.SignupForm =  new FormGroup({
-      name: new FormControl(helo['name']),
-      email:new FormControl(helo['email']),
-      password: new FormControl(helo['password']),
-      age: new FormControl(helo['age']),
-      contact: new FormControl(helo['contact']),
-    })
-   })
+
+  searchFilter(event: any) {
+    console.log(event.target.value)
+    this.dataSource.filter = event.target.value
   }
-  searchData(abc:any){
-    this.dataSource.filter = abc.target.value
-  }
-  nameFilter(abc:any){
-    console.log(abc);
-    this.dataSource.filter = abc
-  }
-  emailFilter(helo:any){
-    this.dataSource.filter=helo
-  }
+
+
+
+
 }
