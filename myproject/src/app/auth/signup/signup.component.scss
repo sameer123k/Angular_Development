@@ -1,19 +1,19 @@
-.outer{
+.outer {
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: center;
     height: 100vh;
     background-image: url(../../../assets/bg.avif);
-    .main{
+
+    .main {
         width: 40%;
         height: auto;
         // width: 400px;
         padding: 0 0 20px 0;
         background-color: #fff;
         box-shadow: 0 0 10px 3px #9f9f9f;
-        padding: 10px 23px 25px 23px;       
-       
-        }
-    
-}
+        padding: 10px 23px 25px 23px;
 
+    }
+
+}

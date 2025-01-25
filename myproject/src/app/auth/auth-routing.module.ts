@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component'
 import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {  UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  {path:'dashboard', component:UserDashboardComponent},
+  { path: 'dashboard', component: UserDashboardComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
